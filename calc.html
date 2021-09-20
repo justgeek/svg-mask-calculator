@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>calculator</title>
+<script type="text/javascript" src="jquery-2.0.0.min.js"></script>
+<style type="text/css">
+body {
+	background-image: url(05.jpg);
+}
+#wrap {
+	position: absolute;
+	width: 40%;
+	height: 564px;
+	z-index: 1;
+	left: 30%;
+	top: 50px;
+	background-color: #C0CCC0;
+	border-top-style: groove;
+	border-right-style: groove;
+	border-bottom-style: groove;
+	border-left-style: groove;
+}
+.point {
+	width: 70%;
+	left: 15%;
+	position: absolute;
+	top: 15px;
+}
+.dimensions {
+	width: 40%;
+	left: 30%;
+	position: absolute;
+	top: 150px;
+}
+#txt1 {
+	position: absolute;
+	height: 90px;
+	z-index: 2;
+	top: 50px;
+	width: 80%;
+	left: 10%;
+	text-align: center;
+	color: #063;
+}
+#txt2 {
+	position: absolute;
+	height: 90px;
+	z-index: 2;
+	top: 190px;
+	width: 80%;
+	left: 10%;
+	text-align: center;
+	color: #063;
+}
+#calbtn {
+	position: absolute;
+	width: 30%;
+	height: 40px;
+	z-index: 2;
+	left: 35%;
+	top: 320px;
+	background-color: #003333;
+	text-align: center;
+	line-height: 40px;
+	color: #C0CCC0;
+	border-top-style: groove;
+	border-right-style: groove;
+	border-bottom-style: groove;
+	border-left-style: groove;
+}
+.result {
+	position: absolute;
+	height: 150px;
+	width: 90%;
+	left: 5%;
+	top: 400px;
+}
+</style>
+</head>
+
+<body>
+<div id="wrap">
+  <input id="points" type="text" class="point" value="" />
+  <div  id="txt1">Enter your points here seperated by commas , note that the input will be trimmed , so dont worry about whitespaces.</div>
+  <input name="dimension" type="text" class="dimensions" id="dimension" value="" />
+ 
+  <div  id="txt2">Enter the Width or Height of your SVG (pixels) image in here , note that the produced mask will be fit to element box based on percent calculated upon the entered value ( it is preferable that width and height of the mask will be same)</div>
+  <div id="calbtn">Calculate</div>
+  <textarea id="result" class="result"></textarea>
+</div>
+<script type="text/javascript">
+
+function calc(){var e=/[0123456789.]/,n="",l=0,t=[],c=0,s=0,a="",o=[];for(n=$("#points").val(),n=n.replace(/\s+/g,""),dimension=$("#dimension").val(),i=n.indexOf(",");-1!=i;)t.push(n.slice(l,i)),l=i+1,i=n.indexOf(",",l);for(t.push(n.slice(l)),o=t.slice(0),c=0;c<=t.length-1;c++)for(s=0;s<=t[c].length-1;s++)e.test(t[c][s])&&(a+=t[c][s]),(0==e.test(t[c][s])&&""!=a||s==t[c].length-1&&""!=a)&&(o[c]=o[c].replace(a,(parseInt(a)/dimension).toString()),a="");$("#result").val(o)}$("#calbtn").click(function(){calc()});
+//collect digits till u find a non digit
+</script>
+
+</body>
+</html>
